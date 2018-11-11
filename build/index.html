@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+        
+<head>
+    <script src="app.js"></script>
+    <script src="axios.min.js"></script>
+    <meta charset="UTF-8">
+    
+</head>
+ 
+<body background="pantalla.png" align="center" item-width="100%" onload="Functioninicial()"  onunload="salir()">
+
+  <form id="frm">
+          
+        <table border="0" style="background-color: rgba(255, 255, 255, 0.2);box-shadow: 5px 5px 25px rgb(110, 110, 110); border-radius: 10px; " cellpadding="5" cellspacing="5" table align="center">
+              <tr>
+              <th colspan="4"><img height="100" width="500" src="bienvenidos.jpg" alt="Bienvenidos!!"  style="background-color: rgba(255, 255, 255, 0.5)"/></th>   
+              </tr>
+              <tr>
+                    <td align="right" style="font-size:140%;"># Reservacion:</td>
+                    <td><input type="number" name="reservacion" value="1" size="2" min="1" autofocus></td>
+                    <td align="right" style="font-size:140%;">Cliente:</td>
+                    <td><input type="text" id="cliente" size="25" style="text-transform:uppercase" value=""></td>
+              </tr>
+              <tr>
+                    <td align="right" style="font-size:140%;">Fecha de Entrada:</td> 
+                    <td><input type="date" id="fentrada" value="2018-03-15" min="2018-03-15"></td>
+                    <td align="right" style="font-size:140%;">Dias Estancia</td>
+                    <td ><div id="estancia" style="height:20px; background-color:rgb(202, 221, 238); border-width:2px; border: rgb(140, 140, 140) 0.5px solid; "></div></td>
+              </tr>
+              <tr>
+                    <td align="right" style="font-size:140%;">Fecha de Salida:</td>
+                    <td><input type="date" id="fsalida" value="2018-03-16" onchange="mayor()"></td>
+                    <td align="right" style="font-size:140%;">Precio MXN</td>
+                    <td><div id="precio" style="height:20px; background-color:rgb(202, 221, 238); border-width:2px; border: rgb(140, 140, 140) 0.5px solid; ">0</div></td>
+              </tr>
+              <tr>
+                  <td align="right" style="font-size:140%;" colspan="3">Precio USD</td>
+                  <td><div id="precioUSD" style="height:20px; background-color:rgb(202, 221, 238); border-width:2px; border: rgb(140, 140, 140) 0.5px solid; ">0</div></td>
+              </tr>
+              <tr>
+                    <td colspan="4">
+                        <font color="red"><div id="Estatus"></div></font>
+                    </td>
+              </tr>
+              <tr>   
+                    <td colspan="4" >
+                          <table  border="3"  cellpadding="5" cellspacing="5" table align="center"> 
+                                  <tr>
+                                      <td colspan="2" style="font-size:140%;">Habitaciones Planta Alta </td>
+                                      <td colspan="2" style="font-size:140%;">Habitaciones de Lujo</td>
+                                  </tr>  
+                                  <tr> 
+                                      <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="01" onclick="aparta('01')">01 Disponible</div></td>
+                                      <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="06" onclick="aparta('06')">06 Disponible</div></td>
+                                      <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="11" onclick="aparta('11')">11 Disponible</div></td>
+                                      <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="16" onclick="aparta('16')">16 Disponible</div></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="02" onclick="aparta('02')">02 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="07" onclick="aparta('07')">07 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="12" onclick="aparta('12')">12 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="17" onclick="aparta('17')">17 Disponible</div></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="03" onclick="aparta('03')">03 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="08" onclick="aparta('08')">08 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="13" onclick="aparta('13')">13 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="18" onclick="aparta('18')">18 Disponible</div></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="04" onclick="aparta('04')">04 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="09" onclick="aparta('09')">09 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="14" onclick="aparta('14')">14 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="19" onclick="aparta('19')">19 Disponible</div></td>
+                                  </tr>
+                                  <tr>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="05" onclick="aparta('05')">05 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="10" onclick="aparta('10')">10 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="15" onclick="aparta('15')">15 Disponible</div></td>
+                                    <td style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 5px; box-shadow: 3px 3px rgb(170, 170, 170);"><div id="20" onclick="aparta('20')">20 Disponible</div></td>
+                                  </tr>
+                           </table> 
+                     </td>
+              </tr>
+              <tr style="background-color:rgb(240, 240, 240); border: rgb(170, 170, 170) 1px solid; border-radius: 15px; box-shadow: 5px 5px rgb(170, 170, 170);">
+                  <td colspan="4">
+                        <font color="blue"><div id="descrip1" style="height:30px; "></div></font>
+                        <font color="blue"><div id="descrip2" style="height:30px; "></div></font>
+                        <font color="blue"><div id="cuarto" style="height:30px; font-size:140%;"></div></font>
+                    </td>   
+              </tr>
+      
+              <tr> 
+                     <td colspan="4" rowspan="2">
+                           <table  border="0"  cellpadding="5" cellspacing="5" table align="center"> 
+                                  <tr>
+                                        <td></td>
+                                        <td><input name= "boton" type="submit" value="   Nueva Reservacion    " onclick="nueva()"></td>
+                                        <td><input name= "boton" type="submit" value=" Verificar Reservacion  " onclick="verificar()"></td>
+                                        <td><input name= "boton" type="submit" value="       Reservar         " onclick="reservar()" ></td>             
+                                  </tr> 
+                                  <tr>
+                                        <td></td>
+                                        <td><input name= "boton" type="submit" value=" Consultar Reservacion " onclick="consulta()" ></td>
+                                        <td><input name= "boton" type="submit" value=" Cancelar Reservacion " onclick="cancela()" ></td>
+                                        <td><input name= "boton" type="submit" value="          Salir             " onclick="salir()" ></td>             
+                                 </tr> 
+                            </table>
+                     </td>
+              </tr> 
+       </table>  
+   </form>
+        
+
+</body>
+
+</html>
