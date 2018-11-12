@@ -63,7 +63,7 @@ var reservacion;
             currency: 'USD',
             minimumFractionDigits: 2,
         });
-        fetch('http://localhost:9229/v1/getTipoDeCambio')
+        fetch('http://localhost:18080/v1/getTipoDeCambio')
             .then(function (response) {
             return response.json();
         }).then(function (j) {

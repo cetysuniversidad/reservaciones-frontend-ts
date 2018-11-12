@@ -1,0 +1,6 @@
+frontend.code-workspace
+src
+.vscode
+.gitignore
+README.md
+tsconfig.json
